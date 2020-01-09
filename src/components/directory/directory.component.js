@@ -25,19 +25,19 @@ class directory extends React.Component {
                            
                          },
                          {
-                         title: 'Sneakers',
-                         imageUrl: 'https://i.ibb.co/f1dJ5G4/Sneakers.png',
-                         size: 'large',
-                         id: 3,
-                         linkUrl: 'shop/sneakers'
-                         },
-                         {
                          title: 'Hats',
                          imageUrl: 'https://i.ibb.co/b69yBdq/Hats.jpg',
                          size: 'large',
-                         id: 4,
+                         id: 3,
                          linkUrl: 'shop/hats'
                          },
+                         {
+                         title: 'Sneakers',
+                         imageUrl: 'https://i.ibb.co/f1dJ5G4/Sneakers.png',
+                         size: 'large',
+                         id: 4,
+                         linkUrl: 'shop/sneakers'
+                         },              
                          {
                          title: 'Jackets',
                          imageUrl: 'https://i.ibb.co/zGMkGsF/TB2y6y6hs2v-U1-Jj-SZFw-XXX2cp-Xa-3192213483-1.jpg',
@@ -52,16 +52,24 @@ class directory extends React.Component {
           return (
                <div className="directory-menu">
                {
-                    this.state.sections.map(({ id, title, imageUrl, size}) => {
+                    this.state.sections.map(({ id, ...otherSectionProps }) => {
                          return (
                               <MenuItem 
                               key={id}
-                              title={title}
-                              imageUrl={imageUrl}
-                              size={size}
+                              {...otherSectionProps}
                               />
                          )
                     })
+                    // this.state.sections.map(({ id, title, imageUrl, size}) => {
+                    //      return (
+                    //           <MenuItem 
+                    //           key={id}
+                    //           title={title}
+                    //           imageUrl={imageUrl}
+                    //           size={size}
+                    //           />
+                    //      )
+                    // })
                     // this.state.sections.map(section => {
                     //     return (
                     //      <MenuItem 
