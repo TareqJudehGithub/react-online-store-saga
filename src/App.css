@@ -2,9 +2,10 @@ body {
   font-family: "Open Sans Condensed";
    padding: 20px 10px; 
 }
-/* .App {
-  text-align: center;
-} */
+a {
+  text-decoration: none;
+  color: black;
+}
 
 .App-logo {
   height: 40vmin;
