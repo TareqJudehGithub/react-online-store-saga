@@ -22,7 +22,7 @@ const menuItem = ({ history, size, title, imageUrl, linkUrl, match}) => (
                    
                     fontSize: "1.2em",
                     color: "rgb(0, 0, 0)",
-                    textShadow: "1px 1px 10px rgb(250, 250, 250)"}}>
+                    textShadow: "1px 1px 20px #4b4b4a"}}>
                     SHOP NOW</span>                      
           </div>
      </div>
