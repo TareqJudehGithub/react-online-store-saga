@@ -1,6 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 body {
   font-family: "Open Sans Condensed";
-   padding: 20px 10px; 
+  padding: 30px;
+  background-image: linear-gradient(
+     to right top,
+     rgba(253, 251, 246, 0.795),
+     rgba(255, 253, 221, 0.795))
 }
 a {
   text-decoration: none;

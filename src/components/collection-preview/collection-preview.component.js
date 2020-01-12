@@ -5,14 +5,14 @@ import "./collection-preview.styles.scss";
 const CollectionPreview = ({ title, items}) => ( //the items array in shop.data.js
      <div className="collection-preview">
           <h1 className="title">{title.toUpperCase()}</h1>
-          <div className="preview"
-          >
+          <div className="preview">
                {
                     items
                     // .filter((item, index) =>index < 4)
                     .map(({id,...otherItemsProps}) => 
                           (
-                              <CollectionItem key={id}
+                              <CollectionItem
+                              key={id}
                               {...otherItemsProps}>                                                           
                               </CollectionItem>
                          )
@@ -22,5 +22,4 @@ const CollectionPreview = ({ title, items}) => ( //the items array in shop.data.
           </div>
      </div>
 )
-
 export default CollectionPreview;

@@ -10,27 +10,28 @@
      box-shadow: 1px 1px 5px rgb(240, 238, 213);
      border-radius: 5px;
      margin: 10px 15px 10px 15px;
-     opacity: .875;    
     overflow: hidden;
-     
+    background-image: linear-gradient(to right bottom,rgba(0, 0, 0, 1),rgba(0, 0, 0, 1));
+   
     &:hover {
     cursor: pointer;
     box-shadow: 1px 1px 15px; 
-    opacity: 1;
-   
+  
      & .background-image {
       transform: scale(1.1); 
-      transition: 4s;
+      transition: 3s;
+      opacity: 1;
       }    
       & .content {
         opacity: 1;
         background: rgb(253, 251, 246);
-        
+        background:linear-gradient(to left,rgb(146, 145, 145), wheat);
         font-weight: bolder;
       }
       & .title{
         opacity: 1;
         font-weight: bolder;
+        
       }
       .subtitle {
         opacity: 1;
@@ -38,13 +39,14 @@
       }
     }
 
-
     .background-image {
     width: 100%;
     height: 100%;
     background-position: center;
     background-size: cover;
     transition-duration: 3s;
+    opacity: .6;
+  
     }
    
      &.large {
@@ -72,20 +74,21 @@
        background-color: rgb(253, 251, 246);
        position: absolute;
        opacity: .8;
+       background-image: linear-gradient(to right bottom,rgba(0, 0, 0, 0),rgba(212, 200, 200, 0.9));
      
        .title {
          font-weight: bold;
          margin-bottom: 6px;
          font-size: 30px;
          color: #000000;
-         text-shadow: 2px 1px 20px #646463;
+        //  text-shadow: 2px 1px 20px #646463;
          opacity: 0.8;
        }
    
        .subtitle {
          font-weight: 500;
          font-size: 16px;
-         text-shadow: 2px 1px 15px #4b4b4a;
+        //  text-shadow: 2px 1px 15px #4b4b4a;
          opacity: .8;   
        } 
      }
