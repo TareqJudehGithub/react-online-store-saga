@@ -19,6 +19,50 @@ const config = {
      measurementId: "G-QFHBNHWM4B"
    };
   
+//storing user DB
+
+//creating a func to allows us to take that user we logged on with in Firebase,
+//and store it (the user) inside our DB in Firebase.
+
+export const createUserProfileDocument = async (userAuth, additionalData) => {
+//userAuth is the user we are logged on with.
+if(!userAuth) return; //if there is not userAuth (no user logged in) we want to/
+//exit from this function (return;.)
+
+//the userRef creates data (documentREf), retreives, delete, or updating the
+//data in that place..in that location.
+//retreive the data => calling .get().
+//.get() is us pulling out a snap shot object of that place in the DB.
+//
+
+const userRef = firestore.doc(`users/${userAuth.uid}`);
+
+// //The snapShot simply respresents data
+const snapShot = await userRef.get();
+// console.log(snapShot); 
+
+//The actuall data we want to store in the DB, when the users logs.
+if(!snapShot.exists){  //if snapshot doesn't exist
+  const { displayName, email } = userAuth   //we want  displayname, email from userAuth.
+  const createdAt = new Date();   //the current date and time for this event.
+
+  try {
+    await userRef.set({   //.set = creates an object
+      displayName,
+      email,
+      createdAt,
+      ...additionalData
+    });
+  } catch (error) {
+    console.log("error creating user", error.message);
+  };
+}
+return userRef;
+}
+
+// end of storing user in DB
+//==================================
+
 
 firebase.initializeApp(config);
 
