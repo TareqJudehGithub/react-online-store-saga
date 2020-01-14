@@ -48,9 +48,9 @@ componentDidMount(){
            ...snapShot.data()
          }
         }//, () => {
-      //   // console.log(this.state)}  for testing if we gets back the user db.
+      //   // console.log(this.state)}  //for testing if we gets back the user db.
       );
-      // console.log(this.state); to check if the user Sign up was successfull.
+      console.log(this.state); //to check if the user Sign up was successfull.
       });    
     }
     else{
