@@ -16,4 +16,4 @@ export default CustomButton;
 
 // isGoogleSignin is a prop used in designing the Google sign in button.
 //line 6 conditional: render the class "google-sign-in" if isGoogleSignin is true,
-// if not, then render "", and the custom-button.8
+// if not, then render "", and the custom-button.

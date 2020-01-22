@@ -8,7 +8,8 @@
   flex: 1 1 auto;   
   min-width: 300px;
   max-width: 300px;
-  margin: 10px 5px 10px 5px;
+  margin: 10px 5px 30px 5px;
+
    
 .image {
   min-width: 100%;
@@ -19,18 +20,18 @@
   margin: 1px;
 } 
 .collection-footer {
+  text-align: center;
   width: 100%;
   height: 5%;
-  margin-bottom: 50px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   font-size: 18px;
 
   .name {
-    width: 90%;
-    margin-bottom: 15px;
+    
   }
-  
   .price {
-    width: 10%;
+   
   }
 }
 }

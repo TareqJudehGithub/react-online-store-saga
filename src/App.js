@@ -9,39 +9,30 @@ import { auth, createUserProfileDocument } from "./firebase/firebase.utils"
 // import logo from './logo.svg';
 import './App.css';
 
+//redux needed library
+import { connect } from "react-redux";
+import { setCurrentUser } from "./redux/user/user.actions"
+
 class App extends React.Component {
-  constructor(){
-    super()
-    this.state= {
-      currentUser: null
-    }
-  }
+
+// constructor is no longer needed because we implemented
+  
 //to close subscription when unmounting to avoide memo leak
 unsubscribeFromAuth = null
   
 //1. DidMount() opens the subscription
 componentDidMount(){
-  this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-    // createUserProfileDocument(user);
-    // this.setState({ currentUser: user});
-    // console.log(user);
 
-    //IF a user signs in, we'll chk from userAut if they actually signing in,
-    //if there is, then we will get back userRef from createUserProfileDocument,
-    //from the userAuth object being passed in (async userAuth) to
-    //await createUserProfileDocument(userAuth).
-    //IF there was a doc there, we will get back the userRef.
-    //If not, we will create a new object and doc. and then get back the userRef.
-    //subscribe (listen) to this userRef for any changes in their data,
-    //but we'll also get back the first state of that data (snapshot).
-    //using that we'll setState of our local app.js with the snapShot.id
-    //and snapshot.data() and then if the users logs out, we'll set
-    //current user to null.. the null we'll get back from the Auth library.
+  // for redux, desctructure setCurrentUser off Props.
+  const { setCurrentUser } = this.props;
+  this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+  
     if (userAuth) {
       const userRef =  await createUserProfileDocument(userAuth);
       
       userRef.onSnapshot(snapShot => {  //where we going to get the data stored for this user.
-       this.setState({
+      //  this.setState({  // for state (before redux)
+        setCurrentUser({
          currentUser: 
          {
            id: snapShot.id,
@@ -54,7 +45,8 @@ componentDidMount(){
       });    
     }
     else{
-      this.setState({currentUser: userAuth});
+      // this.setState({currentUser: userAuth}); //for state (before redux);
+      setCurrentUser(userAuth);
     }
   })
 }
@@ -65,8 +57,8 @@ componentWillUnmount() {
   render() {
     return (
       <div>
-        <Header  currentUser={this.state.currentUser}/>
-        {/* <HomePage /> */}
+        {/* <Header  currentUser={this.state.currentUser}/> state..before Redux*/}
+        <Header />
           <Switch> 
          <Route  exact path="/" component={HomePage}/>   
          <Route path="/shop" component={ShopPage}/>
@@ -78,4 +70,7 @@ componentWillUnmount() {
   }
  
 }
-export default App;
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentUser: user => dispatch(setCurrentUser(user))
+});
+export default connect(null, mapDispatchToProps)(App);

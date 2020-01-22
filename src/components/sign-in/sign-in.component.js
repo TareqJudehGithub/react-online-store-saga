@@ -26,7 +26,6 @@ handleSumbit = async (event) => {
           console.log(error);
      }
 
-     
 }
 handleChange = (event) => {
      const { value, name } =event.target;
@@ -63,11 +62,14 @@ render(){
                     required
                     />
                     <div className="buttons">
-                    <CustomButton type="submit">Sign in</CustomButton>
+                    <CustomButton 
+                    type="submit"
+                    >Sign in</CustomButton>
+
                     <CustomButton
-                     onClick={signInWithGoogle}
+                    onClick={signInWithGoogle}
                      isGoogleSignin>
-                    Sign in Google</CustomButton>
+                    Sign in with Google</CustomButton>
                     </div>
                     
                </form>

@@ -7,8 +7,7 @@ class directory extends React.Component {
           super()
           this.state={
                sections: [
-                         {
-                              
+                         {                            
                          title: 'Women',
                          imageUrl: "https://i.ibb.co/vY58WNk/Women.jpg",
                          size: 'large',
