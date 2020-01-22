@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import HomePage from "./pages/homepage/homepage.component";
 import "./pages/homepage/homepage.styles.scss"
 import ShopPage  from "./pages/shop/shop.component";
@@ -60,9 +60,16 @@ componentWillUnmount() {
         {/* <Header  currentUser={this.state.currentUser}/> state..before Redux*/}
         <Header />
           <Switch> 
-         <Route  exact path="/" component={HomePage}/>   
+         <Route exact path="/" component={HomePage}/>   
          <Route path="/shop" component={ShopPage}/>
-         <Route path="/signin" component={SignInandSingOut}/>
+         {/* <Route path="/signin" component={SignInandSingOut}/> */}
+         <Route exact path="/signin" render={() => 
+         this.props.currentUser
+         ?
+         (<Redirect to ="/"/>)
+         :
+         (<SignInandSingOut />)
+        } />
          </Switch>
          
       </div>
@@ -70,7 +77,11 @@ componentWillUnmount() {
   }
  
 }
+const mapToStateProps = ({ user }) => ({
+  currentUser: user.currentUser
+})
+
 const mapDispatchToProps = (dispatch) => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))
 });
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapToStateProps, mapDispatchToProps)(App);
