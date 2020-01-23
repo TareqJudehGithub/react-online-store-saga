@@ -41,7 +41,7 @@ componentDidMount(){
         }//, () => {
       //   // console.log(this.state)}  //for testing if we gets back the user db.
       );
-      console.log(this.state); //to check if the user Sign up was successfull.
+      // console.log(this.state); //to check if the user Sign up was successfull.
       });    
     }
     else{
@@ -60,16 +60,16 @@ componentWillUnmount() {
         {/* <Header  currentUser={this.state.currentUser}/> state..before Redux*/}
         <Header />
           <Switch> 
-         <Route exact path="/" component={HomePage}/>   
-         <Route path="/shop" component={ShopPage}/>
-         {/* <Route path="/signin" component={SignInandSingOut}/> */}
-         <Route exact path="/signin" render={() => 
-         this.props.currentUser
-         ?
-         (<Redirect to ="/"/>)
-         :
-         (<SignInandSingOut />)
-        } />
+            <Route exact path="/" component={HomePage}/>   
+            <Route path="/shop" component={ShopPage}/>
+            {/* <Route path="/signin" component={SignInandSingOut}/> */}
+            <Route exact path="/signin" render={() => 
+            this.props.currentUser
+            ?
+            (<Redirect to ="/"/>)
+            :
+            (<SignInandSingOut />)
+            } />
          </Switch>
          
       </div>

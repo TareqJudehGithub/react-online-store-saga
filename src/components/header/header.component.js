@@ -3,12 +3,16 @@ import "./header.styles.scss";
 import { Link } from "react-router-dom";
 import { auth } from "../../firebase/firebase.utils";
 import {ReactComponent as Logo} from "../../assets/crown.svg";
+//cart
+import CartIcon from "../cart-icon/cart-icon.component";
+import CartDropDown from "../cart-dropdown/cart-dropdown.component";
+
 
 //redux needed library.
 //connect is a higher order component.
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 
-const Header = ({ currentUser }) => (
+const Header = ({ currentUser, hidden }) => ( //argue becomes available after mapStateToProps
      <div className="header" >
      <Link className="logo-container" to="/">
           <Logo className="logo" />
@@ -21,25 +25,36 @@ const Header = ({ currentUser }) => (
                 CONTACT
                </Link>
                {
-                    currentUser
+                    currentUser 
                     ?
-                    <div className="option"
+                    (<div className="option"
                     onClick={()=>{auth.signOut()}}>  
                     SIGN OUT 
-                    </div>
+                    </div>)
                     :
-                    <Link className="option"
+                    (<Link className="option"
                     to="/signin">
                     SIGN IN
-                    </Link>
+                    </Link>)
                }
+               <CartIcon />
           </div>
+          {
+               hidden
+               ?
+               null
+               :
+               <CartDropDown />
+          }
+         
+
      </div>
 )
 //setting up redux:
 
-const mapStateToProps = (state) => ({
-     currentUser: state.user.currentUser
+const mapStateToProps = ({user: { currentUser }, cart: { hidden }}) => ({
+    currentUser,
+    hidden
 });
 
 export default connect(mapStateToProps)(Header);
