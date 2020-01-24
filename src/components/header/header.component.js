@@ -46,8 +46,6 @@ const Header = ({ currentUser, hidden }) => ( //argue becomes available after ma
                :
                <CartDropDown />
           }
-         
-
      </div>
 )
 //setting up redux:
