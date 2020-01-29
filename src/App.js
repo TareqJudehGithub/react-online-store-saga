@@ -6,7 +6,10 @@ import ShopPage  from "./pages/shop/shop.component";
 import Header from "./components/header/header.component";
 import SignInandSingOut from "./pages/sign-in-and-sign-out/sign-in-and-sign-out.component";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils"
-// import logo from './logo.svg';
+//selectors:
+import {createStructuredSelector} from "reselect";
+import {selectCurrentUser} from "./redux/user/user.selectors";
+
 import './App.css';
 
 //redux needed library
@@ -77,9 +80,9 @@ componentWillUnmount() {
   }
  
 }
-const mapToStateProps = ({ user }) => ({
-  currentUser: user.currentUser
-})
+const mapToStateProps = createStructuredSelector ({
+  currentUser: selectCurrentUser
+});
 
 const mapDispatchToProps = (dispatch) => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))

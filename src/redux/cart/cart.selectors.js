@@ -1,10 +1,12 @@
 import {createSelector} from "reselect";
 
-//Input Selector:
-//A functions that gets the whole state, and returns a part of it.. 1 layer deep.
 const SelectCart = (state) => state.cart;
-//Here, its going to get the whole reducer's state,  and we just need a small piece
-//of it.. selectCart.
+
+const selectCart  = (state )=> state.cart;
+export const selectCartHidden = createSelector(
+     [selectCart],
+     (cart) => cart.hidden
+)
 
 export const SelectCartItems = createSelector(
      [SelectCart],

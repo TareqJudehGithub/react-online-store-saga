@@ -7,10 +7,14 @@ import {ReactComponent as Logo} from "../../assets/crown.svg";
 import CartIcon from "../cart-icon/cart-icon.component";
 import CartDropDown from "../cart-dropdown/cart-dropdown.component";
 
-
 //redux needed library.
 //connect is a higher order component.
 import {connect} from "react-redux";
+
+//selectors
+import {createStructuredSelector} from "reselect";
+import {selectCartHidden} from "../../redux/cart/cart.selectors";
+import { selectCurrentUser } from "../../redux/user/user.selectors";
 
 const Header = ({ currentUser, hidden }) => ( //argue becomes available after mapStateToProps
      <div className="header" >
@@ -50,9 +54,9 @@ const Header = ({ currentUser, hidden }) => ( //argue becomes available after ma
 )
 //setting up redux:
 
-const mapStateToProps = ({user: { currentUser }, cart: { hidden }}) => ({
-    currentUser,
-    hidden
+const mapStateToProps = createStructuredSelector({
+    currentUser: selectCurrentUser,
+    hidden: selectCartHidden
 });
 
 export default connect(mapStateToProps)(Header);
