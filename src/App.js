@@ -1,25 +1,26 @@
 import React from 'react';
+
 import { Route, Switch, Redirect } from "react-router-dom";
+import { auth, createUserProfileDocument } from "./firebase/firebase.utils"
+
 import HomePage from "./pages/homepage/homepage.component";
-import "./pages/homepage/homepage.styles.scss"
 import ShopPage  from "./pages/shop/shop.component";
 import Header from "./components/header/header.component";
 import SignInandSingOut from "./pages/sign-in-and-sign-out/sign-in-and-sign-out.component";
-import { auth, createUserProfileDocument } from "./firebase/firebase.utils"
+import CheckOutPage from "./pages/checkout/checkout.component";
+
 //selectors:
 import {createStructuredSelector} from "reselect";
 import {selectCurrentUser} from "./redux/user/user.selectors";
-
-import './App.css';
 
 //redux needed library
 import { connect } from "react-redux";
 import { setCurrentUser } from "./redux/user/user.actions"
 
+import './App.css';
+
 class App extends React.Component {
 
-// constructor is no longer needed because we implemented
-  
 //to close subscription when unmounting to avoide memo leak
 unsubscribeFromAuth = null
   
@@ -65,8 +66,9 @@ componentWillUnmount() {
           <Switch> 
             <Route exact path="/" component={HomePage}/>   
             <Route path="/shop" component={ShopPage}/>
-            {/* <Route path="/signin" component={SignInandSingOut}/> */}
-            <Route exact path="/signin" render={() => 
+            <Route path="/checkout" component={CheckOutPage}/>
+
+            <Route exact path="/signin" render={() =>
             this.props.currentUser
             ?
             (<Redirect to ="/"/>)
