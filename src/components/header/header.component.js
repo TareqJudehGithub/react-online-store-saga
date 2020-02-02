@@ -5,7 +5,7 @@ import { auth } from "../../firebase/firebase.utils";
 import {ReactComponent as Logo} from "../../assets/crown.svg";
 //cart
 import CartIcon from "../cart-icon/cart-icon.component";
-import CartDropDown from "../cart-dropdown/cart-dropdown.component";
+// import CartDropDown from "../cart-dropdown/cart-dropdown.component";
 
 //redux needed library.
 //connect is a higher order component.
@@ -17,7 +17,7 @@ import {selectCartHidden} from "../../redux/cart/cart.selectors";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 
 const Header = ({ currentUser, hidden }) => ( //argue becomes available after mapStateToProps
-     <div className="header" >
+     <div className="header" id="nav">
      <Link className="logo-container" to="/">
           <Logo className="logo" />
      </Link>
@@ -25,9 +25,9 @@ const Header = ({ currentUser, hidden }) => ( //argue becomes available after ma
                <Link className="option" to="/shop">
                 SHOP
                </Link>
-               <Link className="option" to="/shop">
+               {/* <Link className="option" to="/shop">
                 CONTACT
-               </Link>
+               </Link> */}
                {
                     currentUser 
                     ?
@@ -41,15 +41,17 @@ const Header = ({ currentUser, hidden }) => ( //argue becomes available after ma
                     SIGN IN
                     </Link>)
                }
-               <CartIcon />
+               <CartIcon>
+                   
+               </CartIcon>
           </div>
-          {
+          {/* {
                hidden
                ?
                null
                :
                <CartDropDown />
-          }
+          } */}
      </div>
 )
 //setting up redux:

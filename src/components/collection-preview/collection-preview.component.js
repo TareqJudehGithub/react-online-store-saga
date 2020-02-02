@@ -4,7 +4,9 @@ import "./collection-preview.styles.scss";
 
 const CollectionPreview = ({ title, items }) => ( //the items array in shop.data.js
      <div className="collection-preview">
-          <h1 className="title">{title.toUpperCase()}</h1>
+          <h1 className="title"
+          style={{marginTop:"50px"}}
+          >{title.toUpperCase()}</h1>
           <div className="preview">
                {
                     items
