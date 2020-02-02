@@ -12,7 +12,7 @@ class directory extends React.Component {
                          imageUrl: "https://i.ibb.co/vY58WNk/Women.jpg",
                          size: 'large',
                          id: 1,
-                         linkUrl: 'shop/womens'
+                         linkUrl: 'shop'
                           
                          },
                          {
@@ -20,7 +20,7 @@ class directory extends React.Component {
                          imageUrl: 'https://i.ibb.co/1mvLjJB/Men.jpg',
                          size: 'large',
                          id: 2,
-                         linkUrl: 'shop/mens'
+                         linkUrl: 'shop'
                            
                          },
                          {
@@ -28,22 +28,22 @@ class directory extends React.Component {
                          imageUrl: 'https://i.ibb.co/b69yBdq/Hats.jpg',
                          size: 'large',
                          id: 3,
-                         linkUrl: 'shop/hats'
+                         linkUrl: 'shop'
                          },
-                         {
-                         title: 'Sneakers',
-                         imageUrl: 'https://i.ibb.co/f1dJ5G4/Sneakers.png',
-                         size: 'large',
-                         id: 4,
-                         linkUrl: 'shop/sneakers'
-                         },              
                          {
                          title: 'Jackets',
                          imageUrl: 'https://i.ibb.co/zGMkGsF/TB2y6y6hs2v-U1-Jj-SZFw-XXX2cp-Xa-3192213483-1.jpg',
                          size: 'large',
+                         id: 4,
+                         linkUrl: 'shop'
+                         }, 
+                         {
+                         title: 'Sneakers',
+                         imageUrl: 'https://i.ibb.co/f1dJ5G4/Sneakers.png',
+                         size: 'large',
                          id: 5,
-                         linkUrl: 'shop/jackets'
-                         }  
+                         linkUrl: 'shop'
+                         },              
                        ]                 
                     }
                }

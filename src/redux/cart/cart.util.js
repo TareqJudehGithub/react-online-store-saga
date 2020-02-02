@@ -9,12 +9,14 @@ export const addItemToCart = (cartItems, cartItemToAdd) => {
           return cartItems.map(cartItem =>                 
                     cartItem.id === cartItemToAdd.id
                     ?
+                    //if the item to be added is already in the cart:
                     {...cartItem, quantity: cartItem.quantity +1 }
                     :
                     cartItem
           )        
      }
      else{
+          //if the item is will be added to cart for the 1st time:
           return [...cartItems, { ...cartItemToAdd, quantity: 1 }]
      }
      
@@ -29,6 +31,7 @@ export const removeItemFromCart = (cartItems, cartItemsToRemove) => {
      if (existingCartItem.quantity === 1){
           return cartItems.filter(cartItem =>
 
+          //keep rest of cart items in the array:
                cartItem.id !== cartItemsToRemove.id)
      }
      //if the quantity > 1:
