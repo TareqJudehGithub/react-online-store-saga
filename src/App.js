@@ -6,7 +6,6 @@ import { auth, createUserProfileDocument } from "./firebase/firebase.utils"
 import HomePage from "./pages/homepage/homepage.component";
 import ShopPage  from "./pages/shop/shop.component";
 import Header from "./components/header/header.component";
-import CartIcon from "./components/cart-icon/cart-icon.component";
 import SignInandSingOut from "./pages/sign-in-and-sign-out/sign-in-and-sign-out.component";
 import CheckOutPage from "./pages/checkout/checkout.component";
 
@@ -64,7 +63,6 @@ componentWillUnmount() {
       <div>
         {/* <Header  currentUser={this.state.currentUser}/> state..before Redux*/}
         <Header />
-        <CartIcon />
           <Switch> 
             <Route exact path="/" component={HomePage}/>   
             <Route path="/shop" component={ShopPage}/>

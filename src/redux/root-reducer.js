@@ -1,8 +1,9 @@
-//where we keep our all reducers:
-import {combineReducers} from "redux";  //to combine all reducers here
+import {combineReducers} from "redux"; 
 
 import userReducer from "./user/user.reducer";
 import cartReducer from "./cart/cart.reducer";
+import directoryReduce from "./directory/directory-reducer";
+import shopReducer from './shop/shop.reducer';
 
 //redux-persist
 import {persistReducer} from "redux-persist";
@@ -19,15 +20,8 @@ const persistConfig = {
 }
 const rootReducer = combineReducers({
      user: userReducer,
-     cart: cartReducer
-
+     cart: cartReducer,
+     directory: directoryReduce,
+     shop: shopReducer
 })
  export default persistReducer(persistConfig, rootReducer);
-
-
-
-//This is the old rootReducer before using redux-persist
-// export default combineReducers({
-//      user: userReducer,
-//      cart: cartReducer
-// })
