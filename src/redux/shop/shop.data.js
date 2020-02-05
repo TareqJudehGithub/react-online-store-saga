@@ -1,7 +1,9 @@
-const SHOP_DATA = [
-    {
-    id: 1,
-    title: 'Womens',
+//135. Here we convert the array into an object:
+const SHOP_DATA = {
+//women  
+  women: {
+    id: 4,
+    title: 'Women',
     routeName: 'women',
     items: [
       {
@@ -48,8 +50,9 @@ const SHOP_DATA = [
       }
                 ]
       },
-      {
-      id: 2,
+  //men
+      men: {
+      id: 5,
       title: 'Men',
       routeName: 'men',
       items: [
@@ -91,8 +94,9 @@ const SHOP_DATA = [
         }
       ]
             },
-            {
-          id: 4,
+//jackets
+    jackets:{
+          id: 3,
           title: 'Jackets',
           routeName: 'jackets',
           items: [
@@ -128,8 +132,9 @@ const SHOP_DATA = [
             }
           ]
             },
-            {
-          id: 5,
+  //sneakers
+  sneakers: {
+          id: 2,
           title: 'Sneakers',
           routeName: 'sneakers',
           items: [
@@ -183,8 +188,9 @@ const SHOP_DATA = [
             }
           ]
             },
-            {
-          id: 3,
+//hata            
+      hats: {
+          id: 1,
           title: 'Hats',
           routeName: 'hats',
           items: [
@@ -244,6 +250,6 @@ const SHOP_DATA = [
             }
           ]
         }
-      ];
+      };
      
       export default SHOP_DATA;

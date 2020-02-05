@@ -10,15 +10,8 @@ const CollectionPreview = ({ title, items }) => ( //the items array in shop.data
           <div className="preview">
                {
                     items
-                    // .filter((item, index) =>index < 4)
-                    // .map(({ id,...otherItemsProps }) => 
-                    //       (
-                    //           <CollectionItem
-                    //           key={id}
-                    //           {...otherItemsProps}>                                                           
-                    //           </CollectionItem>
-                    //      )
-                    // )
+                    .filter((item, index) =>index < 4)
+                    
                     //for redux 
                     .map((item)=> {
                          return (

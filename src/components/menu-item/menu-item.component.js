@@ -2,7 +2,7 @@ import React from "react";
 import "./menu-item.styles.scss";
 import {withRouter} from "react-router-dom";
 
-const menuItem = ({ history, size, title, imageUrl, linkUrl, match}) => (
+const menuItem = ({ history, size, title, imageUrl, linkUrl, match }) => (
 
      <div className={`${size} menu-item`}
      //psuodo code: we take the match.url into the linkUrl
@@ -20,7 +20,8 @@ const menuItem = ({ history, size, title, imageUrl, linkUrl, match}) => (
                          marginBottom: "10px",
                          fontSize: "1.2em",
                          color: "rgb(0, 0, 0)",
-                         textShadow: "1px 1px 20px #4b4b4a"}}>
+                         textShadow: "1px 1px 20px #4b4b4a"}}
+                         >
                          SHOP NOW</span>                      
                </div>
      </div>

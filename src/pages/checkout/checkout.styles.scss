@@ -31,5 +31,24 @@
        margin-left: auto;
        font-size: 20px;
      }
+    
+     .test-warning {
+       text-align: left;
+       margin-top: 20px;
+       margin-bottom: 20px;
+       font-size: 15px;
+       color: rgb(75, 75, 80);
+       line-height: 1.5;
+       box-shadow: 1px 1px 3px grey;
+       padding: 10px; 
+       margin-left: auto;
+     }
+     .btn-pay-now {
+       margin-left: auto;
+       margin-top: 20px;
+       text-align: center;
+     }
    }
-   
+  .note {
+    margin-bottom: 7.5px;
+  }
