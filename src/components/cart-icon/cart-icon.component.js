@@ -10,7 +10,7 @@ import {withRouter} from "react-router-dom";
 const CartIcon = ( { itemCount, history } ) => ( 
      <div className="cart-icon"
           // onClick={toggleCartHidden}
-          onClick={() => history.push(`${"./checkout"}`)}
+          onClick={() => history.push(`${"/checkout"}`)}
           >
           <ShoppingIcon className="shopping-icon"/>
           <span className="item-count">

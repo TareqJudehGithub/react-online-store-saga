@@ -6,7 +6,9 @@ const CollectionPreview = ({ title, items }) => ( //the items array in shop.data
      <div className="collection-preview">
           <h1 className="title"
           style={{marginTop:"50px"}}
-          >{title.toUpperCase()}</h1>
+          >
+               {title.toUpperCase()}
+               </h1>
           <div className="preview">
                {
                     items

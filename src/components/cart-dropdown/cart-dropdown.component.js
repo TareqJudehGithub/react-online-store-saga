@@ -35,7 +35,6 @@ const CartDropDown = ({ cartItems, history, dispatch }) => (
               {
                history.push("/checkout")
                dispatch(toggleCartHidden());
-               // onClick={()=> history.push(`${match.url}${linkUrl}`)}>
                }}>
                CHECKOUT
           </CustomButton>
@@ -46,7 +45,3 @@ const mapStateToProps = createStructuredSelector ({
 });
 
 export default  withRouter(connect(mapStateToProps)(CartDropDown));
-
-// const mapDispatchToProps = (dispatch) => ({
-//      toggleCartHidden: () => dispatch(toggleCartHidden())
-// });
