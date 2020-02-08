@@ -18,9 +18,10 @@ const menuItem = ({ history, size, title, imageUrl, linkUrl, match }) => (
                     <span className="subTitle"
                     style={{
                          marginBottom: "10px",
-                         fontSize: "1.2em",
+                         fontSize: "1em",
                          color: "rgb(0, 0, 0)",
-                         textShadow: "1px 1px 20px #4b4b4a"}}
+                         textShadow: "1px 1px 20px #4b4b4a",
+                    textAlign: "center"}}
                          >
                          SHOP NOW</span>                      
                </div>
