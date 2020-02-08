@@ -24,6 +24,7 @@ const CollectionPreview = ({ title, items }) => ( //the items array in shop.data
                          )
                     })
                }
+               
           </div>
      </div>
 )
