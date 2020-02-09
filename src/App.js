@@ -1,4 +1,5 @@
 import React from 'react';
+//styled component:
 
 import { Route, Switch, Redirect } from "react-router-dom";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils"
@@ -18,6 +19,7 @@ import { connect } from "react-redux";
 import { setCurrentUser } from "./redux/user/user.actions"
 
 import './App.css';
+
 
 class App extends React.Component {
 

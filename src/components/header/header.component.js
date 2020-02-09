@@ -1,6 +1,5 @@
 import React from "react";
-import "./header.styles.scss";
-import { Link } from "react-router-dom";
+
 import { auth } from "../../firebase/firebase.utils";
 import {ReactComponent as Logo} from "../../assets/crown.svg";
 //cart
@@ -15,35 +14,39 @@ import {createStructuredSelector} from "reselect";
 import {selectCartHidden} from "../../redux/cart/cart.selectors";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 
+//styles components:
+import {HeaderContainer, LogoContainer, OptionsContainer,
+OptionLink, OptionDiv } from "./header.styles";
+
 const Header = ({ currentUser, hidden }) => ( 
-     <div className="header" id="nav">
-     <Link className="logo-container" to="/">
-          <Logo className="logo" />
-     </Link>
-          <div className="options">
-               <Link className="option" to="/shop">
+     <HeaderContainer>
+     <LogoContainer to="/">
+          <Logo />
+     </LogoContainer>
+          <OptionsContainer>
+               <OptionLink to="/shop">
                 SHOP
-               </Link>
+               </OptionLink>
                {/* <Link className="option" to="/shop">
                 CONTACT
                </Link> */}
                {
                     currentUser 
                     ?
-                    (<div className="option"
+                    (<OptionDiv
                     onClick={()=>{auth.signOut()}}>  
                     SIGN OUT 
-                    </div>)
+                    </OptionDiv>)
                     :
-                    (<Link className="option"
+                    (<OptionLink className="option"
                     to="/signin">
                     SIGN IN
-                    </Link>)
+                    </OptionLink>)
                }
                <CartIcon>
                    
                </CartIcon>
-          </div>
+          </OptionsContainer>
           {/* {
                hidden
                ?
@@ -51,7 +54,7 @@ const Header = ({ currentUser, hidden }) => (
                :
                <CartDropDown />
           } */}
-     </div>
+     </HeaderContainer>
 )
 //setting up redux:
 
