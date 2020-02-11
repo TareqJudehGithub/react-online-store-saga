@@ -1,13 +1,17 @@
+//Firebase configuration and setup:
+//A.
 import firebase from "firebase/app";
 
-//these are needed for the google authentication.
 
+//B.
 //for the database
 import "firebase/firestore";
 
+//C.
 //for the authentication
 import "firebase/auth";
 
+//D.
 const config = {
      apiKey: "AIzaSyDm0Y6cSdOXp4sFJDBugo1C0g2dhv1SrgM",
      authDomain: "react-online-store-app-3a252.firebaseapp.com",
@@ -18,69 +22,85 @@ const config = {
      appId: "1:560602626333:web:e22989e1a849b888de49f4",
      measurementId: "G-QFHBNHWM4B"
    };
+
+//E.
+  firebase.initializeApp(config);
   
+
 //storing user DB
-
-//creating a func to allows us to take that user we logged on with in Firebase,
-//and store it (the user) inside our DB in Firebase.
-
-export const createUserProfileDocument = async (userAuth, additionalData) => {
-//userAuth is the user we are logged on with.
-if(!userAuth) return; //if there is not userAuth (no user logged in) we want to/
-//exit from this function (return;.)
-
-//the userRef creates data (documentREf), retreives, delete, or updating the
-//data in that place..in that location.
-//retreive the data => calling .get().
-//.get() is us pulling out a snap shot object of that place in the DB.
-//
-
-const userRef = firestore.doc(`users/${userAuth.uid}`);
-
-// //The snapShot simply respresents data
-const snapShot = await userRef.get();
-// console.log(snapShot); 
-
-//The actuall data we want to store in the DB, when the users logs.
-if(!snapShot.exists){  //if snapshot doesn't exist
-  const { displayName, email } = userAuth   //we want  displayname, email from userAuth.
-  const createdAt = new Date();   //the current date and time for this event.
-
-  try {
-    await userRef.set({   //.set = creates an object
-      displayName,
-      email,
-      createdAt,
-      ...additionalData
-    });
-  } catch (error) {
-    console.log("error creating user", error.message);
-  };
-}
-return userRef;
-}
-
-// end of storing user in DB
-//==================================
-
-
-firebase.initializeApp(config);
-
-//to setup the google auth
 
 export const auth = firebase.auth();  //from import "firebase/auth";
 export const firestore =firebase.firestore(); //import "firebase/auth";
 
+//creating a func to allows us to take that user we logged on with in Firebase,
+//and store it (the user) inside our DB in Firebase.
 
+export const createUserProfileDocument =
+ async (userAuth, additionalData) => {
+
+//If there is (no user logged in), exit from this function (return;).
+if(!userAuth) return; 
+
+const userRef = firestore.doc(`users/${userAuth.uid}`);
+
+// //The snapShot simply respresents data:
+const snapShot = await userRef.get();
+
+//The actuall data we want to store in the DB, when the users logs:
+  if(!snapShot.exists){  //if snapshot doesn't exist
+    const { displayName, email } = userAuth   //we want  displayname, email from userAuth.
+    const createdAt = new Date();   //the current date and time for this event.
+
+    try {
+      await userRef.set({   //.set = creates a new document object
+        displayName,        //with all these properties on it inside the DB.
+        email,
+        createdAt,
+        ...additionalData
+      });
+    } catch (error) {
+      console.log("error creating user", error.message);
+    };
+  }
+  else {
+    return userRef;
+  }
+
+} 
+//159.
+//storing item db in firestore:
+export const addCollectionAndDocuments = async (
+  collectionKey,
+  objectsToAdd
+   ) => {
+  //creating the collection key:
+  const collectionRef = firestore.collection(collectionKey);
+ 
+  //creating a Batch object:
+  const batch = firestore.batch();
+  objectsToAdd.forEach(obj => {
+    //gives us a new documentRef in this collection and randomly generates an ID.
+    const newDocRef = collectionRef.doc(); //.doc() generates a random unique key.
+    //we need to set the value:
+    batch.set(newDocRef, obj);  
+  });
+  //batching all the calls:  
+  return await batch.commit();
+};
+
+// end of storing user in DB
+//==================================
+
+//to setup the google auth
 
 //1. To get access to the  GoogleAuthProvider() from Google Authenticator Library.
 const provider = new firebase.auth.GoogleAuthProvider();
 
 //2. We want to always triger the google popup whenever we use this Google
-// Auth Provider for authentication and sign in.
+// Auth Provider for authentication and sign in:
 provider.setCustomParameters({ prompt: "select_account" });
 
-//3. to specify which sign in..the Google Auth 
+//3. to specify which sign in..the Google Authentication:
 export const signInWithGoogle = () => auth.signInWithPopup(provider);
 
 export default firebase;

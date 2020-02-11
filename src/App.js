@@ -2,7 +2,7 @@ import React from 'react';
 //styled component:
 
 import { Route, Switch, Redirect } from "react-router-dom";
-import { auth, createUserProfileDocument } from "./firebase/firebase.utils"
+import { auth, createUserProfileDocument, addCollectionAndDocuments } from "./firebase/firebase.utils"
 
 import HomePage from "./pages/homepage/homepage.component";
 import ShopPage  from "./pages/shop/shop.component";
@@ -20,7 +20,6 @@ import { setCurrentUser } from "./redux/user/user.actions"
 
 import './App.css';
 
-
 class App extends React.Component {
 
 //to close subscription when unmounting to avoide memo leak
@@ -29,8 +28,9 @@ unsubscribeFromAuth = null
 //1. DidMount() opens the subscription
 componentDidMount(){
 
-  // for redux, desctructure setCurrentUser off Props.
-  const { setCurrentUser } = this.props;
+  // for redux, desctructure CurrentUser off Props.
+  const { CurrentUser } = this.props;
+
   this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
   
     if (userAuth) {
@@ -38,22 +38,14 @@ componentDidMount(){
       
       userRef.onSnapshot(snapShot => {  //where we going to get the data stored for this user.
       //  this.setState({  // for state (before redux)
-        setCurrentUser({
-         currentUser: 
-         {
+        CurrentUser({      
            id: snapShot.id,
-           ...snapShot.data()
-         }
-        }//, () => {
-      //   // console.log(this.state)}  //for testing if we gets back the user db.
-      );
-      // console.log(this.state); //to check if the user Sign up was successfull.
-      });    
+           ...snapShot.data()        
+        });   
+      });
     }
-    else{
-      // this.setState({currentUser: userAuth}); //for state (before redux);
-      setCurrentUser(userAuth);
-    }
+    
+      CurrentUser(userAuth);
   })
 }
 //2. Unmount() closes the subscription
@@ -63,7 +55,7 @@ componentWillUnmount() {
   render() {
     return (
       <div>
-        {/* <Header  currentUser={this.state.currentUser}/> state..before Redux*/}
+        
         <Header />
           <Switch> 
             <Route exact path="/" component={HomePage}/>   
@@ -85,10 +77,11 @@ componentWillUnmount() {
  
 }
 const mapToStateProps = createStructuredSelector ({
-  currentUser: selectCurrentUser
+  currentUser: selectCurrentUser,
+ 
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setCurrentUser: user => dispatch(setCurrentUser(user))
+  CurrentUser: user => dispatch(setCurrentUser(user))
 });
 export default connect(mapToStateProps, mapDispatchToProps)(App);
