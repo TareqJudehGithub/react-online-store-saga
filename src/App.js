@@ -2,7 +2,7 @@ import React from 'react';
 //styled component:
 
 import { Route, Switch, Redirect } from "react-router-dom";
-import { auth, createUserProfileDocument, addCollectionAndDocuments } from "./firebase/firebase.utils"
+import { auth, createUserProfileDocument } from "./firebase/firebase.utils"
 
 import HomePage from "./pages/homepage/homepage.component";
 import ShopPage  from "./pages/shop/shop.component";

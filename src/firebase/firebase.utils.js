@@ -79,16 +79,42 @@ export const addCollectionAndDocuments = async (
   //creating a Batch object:
   const batch = firestore.batch();
   objectsToAdd.forEach(obj => {
+
     //gives us a new documentRef in this collection and randomly generates an ID.
-    const newDocRef = collectionRef.doc(); //.doc() generates a random unique key.
-    //we need to set the value:
+    const newDocRef = collectionRef.doc(); 
+
+    //seting a new value:
     batch.set(newDocRef, obj);  
   });
   //batching all the calls:  
   return await batch.commit();
 };
+// fetch the data from firestore:
+export const convertCollectionsSnapshotToMap = (collections) => {
 
-// end of storing user in DB
+  //new transformed collection array:
+  const transformedCollection = collections.docs.map(doc => {
+    const { title, items } = doc.data();
+
+    return {
+      routeName: encodeURI(title.toLowerCase()),
+      id: doc.id,
+      title,
+      items
+    }
+  });
+  
+ //We need to use reduce() on the new transformed collection array:
+
+
+    return  transformedCollection.reduce( (accumilator, collection) => {
+
+      accumilator[collection.title.toLowerCase()] = collection;
+      return accumilator;
+    } , {});
+}
+
+
 //==================================
 
 //to setup the google auth
