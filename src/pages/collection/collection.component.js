@@ -1,3 +1,4 @@
+//This component is where we direct each category to it's specific data items (i.e Hats => Hats shop)
 import React from "react";
 import CollectionItem from "../../components/collection-item/collection-item.component";
 import {connect} from "react-redux";
