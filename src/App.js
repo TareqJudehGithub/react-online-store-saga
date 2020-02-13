@@ -18,9 +18,17 @@ import {selectCurrentUser} from "./redux/user/user.selectors";
 import { connect } from "react-redux";
 import { setCurrentUser } from "./redux/user/user.actions"
 
+//spinner animation
+import withSpinner from ".//components/with-spinner/with-spinner.component";
+
 import './App.css';
 
+
+const HomePageWithSpinner = withSpinner(HomePage);
+
 class App extends React.Component {
+
+state = {isLoading: true}
 
 //to close subscription when unmounting to avoide memo leak
 unsubscribeFromAuth = null
@@ -47,19 +55,29 @@ componentDidMount(){
     
       CurrentUser(userAuth);
   })
+ 
+  setTimeout(() => {
+    this.setState({isLoading: false});
+  }, 500)
 }
 //2. Unmount() closes the subscription
 componentWillUnmount() {
   this.unsubscribeFromAuth();
 }
   render() {
+    const { isLoading } = this.state;
     return (
       <div>
-        
         <Header />
+        
           <Switch> 
-            <Route exact path="/" component={HomePage}/>   
+
+            <Route exact path="/"
+            render={(props) =>
+            <HomePageWithSpinner isLoading={isLoading} {...props}/>}/>        
+            
             <Route path="/shop" component={ShopPage}/>
+            
             <Route path="/checkout" component={CheckOutPage}/>
 
             <Route exact path="/signin" render={() =>
