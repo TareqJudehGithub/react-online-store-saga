@@ -52,9 +52,8 @@ componentDidMount(){
         });   
       });
     }
-    
       CurrentUser(userAuth);
-  })
+  });
  
   setTimeout(() => {
     this.setState({isLoading: false});

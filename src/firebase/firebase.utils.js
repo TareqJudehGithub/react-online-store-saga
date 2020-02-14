@@ -26,11 +26,10 @@ const config = {
 //E.
   firebase.initializeApp(config);
   
-
 //storing user DB
 
 export const auth = firebase.auth();  //from import "firebase/auth";
-export const firestore =firebase.firestore(); //import "firebase/auth";
+export const firestore =firebase.firestore(); //import "firebase/firestore";
 
 //creating a func to allows us to take that user we logged on with in Firebase,
 //and store it (the user) inside our DB in Firebase.
@@ -113,7 +112,6 @@ export const convertCollectionsSnapshotToMap = (collections) => {
       return accumilator;
     } , {});
 }
-
 
 //==================================
 

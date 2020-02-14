@@ -10,10 +10,7 @@ import {UpdateCollection} from "../../redux/shop/shop.actions";
 
 import WithSpinner from "../../components/with-spinner/with-spinner.component";
 
-
-//165 2.
-
-//this will return a new component wrapped the new component we passed in
+//this will return a new component wrapped in the new component we passed in:
 const CollectionOverViewWithSpinner = WithSpinner(CollectionsOverView);
 const CollectionPageWithSpinner = WithSpinner(CollectionPage);
 
@@ -35,15 +32,13 @@ class ShopPage extends React.Component  {
 
      //to get the data from collections:
 
-     //The moment snapshot comes back:
-     collectionRef.onSnapshot(async (snapshot) => {
-     //and it's converted
-          const collectionMap = convertCollectionsSnapshotToMap(snapshot);
-     //and then we update our reducer:
-          updateCollections(collectionMap);
-        
-          this.setState({ isLoading: false});
-     });
+     collectionRef.get()
+     .then(snapshot => {
+          const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
+          updateCollections(collectionsMap)
+          this.setState({isLoading: false})
+     })
+     .catch(err => console.log(err));
      };
      //Now ShopPage is good to render the collection object!
 
