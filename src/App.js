@@ -59,6 +59,7 @@ componentDidMount(){
     this.setState({isLoading: false});
   }, 500)
 }
+
 //2. Unmount() closes the subscription
 componentWillUnmount() {
   this.unsubscribeFromAuth();
@@ -68,13 +69,11 @@ componentWillUnmount() {
     return (
       <div>
         <Header />
-        
           <Switch> 
-
             <Route exact path="/"
             render={(props) =>
             <HomePageWithSpinner isLoading={isLoading} {...props}/>}/>        
-            
+        
             <Route path="/shop" component={ShopPage}/>
             
             <Route path="/checkout" component={CheckOutPage}/>
@@ -91,13 +90,10 @@ componentWillUnmount() {
       </div>
     );
   }
- 
 }
 const mapToStateProps = createStructuredSelector ({
   currentUser: selectCurrentUser,
- 
 });
-
 const mapDispatchToProps = (dispatch) => ({
   CurrentUser: user => dispatch(setCurrentUser(user))
 });

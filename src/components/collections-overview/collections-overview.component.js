@@ -1,3 +1,4 @@
+//This is the component responsible for displaying the whole shop.
 import React from "react";
 import CollectionsPreview from "../collection-preview/collection-preview.component";
 import {connect} from "react-redux";

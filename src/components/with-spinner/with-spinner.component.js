@@ -15,6 +15,7 @@ const WithSpinner = WrappedComponent => {
           // when loading finishes, render the component along with its props:
                :
                (
+                    
                     <WrappedComponent {...otherProps}/>
                )
      };
