@@ -7,11 +7,6 @@ export const selectCollections = createSelector(
      (shop => shop.collections)
 );
 
-// export const selectCollectionsForPreview = createSelector(
-//      [selectCollections],
-//      collections => Object.keys(collections).map(key =>
-//           collections[key])
-// );
 //The selector where we preview all the shop main categories:
 export const selectCollectionsForPreview = createSelector(
      [selectCollections],
@@ -27,7 +22,6 @@ export const selectCollectionsForPreview = createSelector(
      )
 );
 
-
 //the selector where we direct each category to it's specific shop items.
 export const selectCollection = collectionUrlParam => createSelector(
      [selectCollections],
@@ -41,7 +35,18 @@ export const selectCollection = collectionUrlParam => createSelector(
           null
      )
 );
-// export const selectCollectionsLoaded = createSelector(
-//      [selectShop],
-//      shop => !!shop.collections 
-// )
+
+//170
+export const selectIsCollectionFetching = createSelector(
+     [selectShop],
+     (shop => shop.isFetching)
+);
+
+//171.
+export const SelectIsCollectionsLoaded = createSelector(
+     [selectShop],
+     //if the collections object is loaded we'll get true,
+     //otherwise, w'ell get false.
+     (shop => !!shop.collections) 
+);
+

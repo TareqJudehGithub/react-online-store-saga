@@ -2,7 +2,6 @@
 //A.
 import firebase from "firebase/app";
 
-
 //B.
 //for the database
 import "firebase/firestore";
@@ -64,30 +63,9 @@ const snapShot = await userRef.get();
   else {
     return userRef;
   }
-
 } 
-//159.
-//storing item db in firestore:
-export const addCollectionAndDocuments = async (
-  collectionKey,
-  objectsToAdd
-   ) => {
-  //creating the collection key:
-  const collectionRef = firestore.collection(collectionKey);
- 
-  //creating a Batch object:
-  const batch = firestore.batch();
-  objectsToAdd.forEach(obj => {
 
-    //gives us a new documentRef in this collection and randomly generates an ID.
-    const newDocRef = collectionRef.doc(); 
 
-    //seting a new value:
-    batch.set(newDocRef, obj);  
-  });
-  //batching all the calls:  
-  return await batch.commit();
-};
 // fetch the data from firestore:
 export const convertCollectionsSnapshotToMap = (collections) => {
 
@@ -104,7 +82,6 @@ export const convertCollectionsSnapshotToMap = (collections) => {
   });
   
  //We need to use reduce() on the new transformed collection array:
-
 
     return  transformedCollection.reduce( (accumilator, collection) => {
 
