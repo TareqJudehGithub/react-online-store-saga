@@ -33,25 +33,21 @@ export const firestore =firebase.firestore(); //import "firebase/firestore";
 //creating a func to allows us to take that user we logged on with in Firebase,
 //and store it (the user) inside our DB in Firebase.
 
-export const createUserProfileDocument =
- async (userAuth, additionalData) => {
+export const createUserProfileDocument = async (userAuth, additionalData) => {
 
-//If there is (no user logged in), exit from this function (return;).
 if(!userAuth) return; 
 
 const userRef = firestore.doc(`users/${userAuth.uid}`);
 
-// //The snapShot simply respresents data:
 const snapShot = await userRef.get();
 
-//The actuall data we want to store in the DB, when the users logs:
-  if(!snapShot.exists){  //if snapshot doesn't exist
-    const { displayName, email } = userAuth   //we want  displayname, email from userAuth.
-    const createdAt = new Date();   //the current date and time for this event.
+  if(!snapShot.exists) {  
+    const { displayName, email } = userAuth;  
+    const createdAt = new Date();   
 
     try {
-      await userRef.set({   //.set = creates a new document object
-        displayName,        //with all these properties on it inside the DB.
+      await userRef.set({   
+        displayName,        
         email,
         createdAt,
         ...additionalData
@@ -60,11 +56,8 @@ const snapShot = await userRef.get();
       console.log("error creating user", error.message);
     };
   }
-  else {
     return userRef;
-  }
-} 
-
+};
 
 // fetch the data from firestore:
 export const convertCollectionsSnapshotToMap = (collections) => {
@@ -106,12 +99,8 @@ export const getCurrentUser = () => {
 //184.
 
 export const googleProvider = new firebase.auth.GoogleAuthProvider();
-
-
 googleProvider.setCustomParameters({ prompt: "select_account" });
-
 export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
-
 
 export default firebase;
 

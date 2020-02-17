@@ -22,4 +22,7 @@ export const clearItemFromCart = (item) => ({
      type: CartActionTypes.CLEAR_ITEM_FROM_CART,
      payload: item
 });
-
+//189.2
+export const clearCart = () => ({
+     type: CartActionTypes.CLEAR_CART
+});
