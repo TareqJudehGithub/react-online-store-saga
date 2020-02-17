@@ -1,24 +1,23 @@
 import React from "react";
 
-import { auth } from "../../firebase/firebase.utils";
 import {ReactComponent as Logo} from "../../assets/crown.svg";
 //cart
 import CartIcon from "../cart-icon/cart-icon.component";
 // import CartDropDown from "../cart-dropdown/cart-dropdown.component";
 
-//redux needed library.
 import {connect} from "react-redux";
 
 //selectors
 import {createStructuredSelector} from "reselect";
-import {selectCartHidden} from "../../redux/cart/cart.selectors";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 
+//188.4
+import {signOutStart} from '../../redux/user/user.actions';
 //styles components:
 import {HeaderContainer, LogoContainer, OptionsContainer,
 OptionLink} from "./header.styles";
 
-const Header = ({ currentUser, hidden }) => ( 
+const Header = ({ currentUser, signOut }) => ( 
      <HeaderContainer>
           <LogoContainer to="/">
                <Logo />
@@ -34,7 +33,8 @@ const Header = ({ currentUser, hidden }) => (
                     currentUser 
                     ?
                     (<OptionLink as="div"
-                    onClick={()=>{auth.signOut()}}>  
+                    //188.6
+                    onClick={signOut}>  
                     SIGN OUT 
                     </OptionLink>)
                     :
@@ -49,20 +49,18 @@ const Header = ({ currentUser, hidden }) => (
                    
                </CartIcon>
           </OptionsContainer>
-          {/* {
-               hidden
-               ?
-               null
-               :
-               <CartDropDown />
-          } */}
+       
      </HeaderContainer>
 )
 //setting up redux:
 
 const mapStateToProps = createStructuredSelector({
-    currentUser: selectCurrentUser,
-    hidden: selectCartHidden
+    currentUser: selectCurrentUser
+  
+});
+//188.5
+const mapDispatchToProps = (dispatch) => ({
+     signOut: () => dispatch(signOutStart())
 });
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps,mapDispatchToProps)(Header);

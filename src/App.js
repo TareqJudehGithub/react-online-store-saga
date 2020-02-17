@@ -2,7 +2,6 @@ import React from 'react';
 //styled component:
 
 import { Route, Switch, Redirect } from "react-router-dom";
-import { auth, createUserProfileDocument } from "./firebase/firebase.utils"
 
 import HomePage from "./pages/homepage/homepage.component";
 import ShopPage  from "./pages/shop/shop.component";
@@ -16,10 +15,12 @@ import {selectCurrentUser} from "./redux/user/user.selectors";
 
 //redux needed library
 import { connect } from "react-redux";
-import { setCurrentUser } from "./redux/user/user.actions"
 
 //spinner animation
 import withSpinner from ".//components/with-spinner/with-spinner.component";
+
+//187 .3
+import {CheckUserSession} from "./redux/user/user.actions";
 
 import './App.css';
 
@@ -27,33 +28,16 @@ import './App.css';
 const HomePageWithSpinner = withSpinner(HomePage);
 
 class App extends React.Component {
-
-state = {isLoading: true}
+state = {isLoading: true};
 
 //to close subscription when unmounting to avoide memo leak
 unsubscribeFromAuth = null
   
 //1. DidMount() opens the subscription
 componentDidMount(){
-
-  // for redux, desctructure CurrentUser off Props.
-  const { CurrentUser } = this.props;
-
-  this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-  
-    if (userAuth) {
-      const userRef =  await createUserProfileDocument(userAuth);
-      
-      userRef.onSnapshot(snapShot => {  //where we going to get the data stored for this user.
-      //  this.setState({  // for state (before redux)
-        CurrentUser({      
-           id: snapShot.id,
-           ...snapShot.data()        
-        });   
-      });
-    }
-      CurrentUser(userAuth);
-  });
+//187.5
+const { checkSession } = this.props;
+checkSession();
  
   setTimeout(() => {
     this.setState({isLoading: false});
@@ -94,7 +78,9 @@ componentWillUnmount() {
 const mapToStateProps = createStructuredSelector ({
   currentUser: selectCurrentUser,
 });
+//187.4
 const mapDispatchToProps = (dispatch) => ({
-  CurrentUser: user => dispatch(setCurrentUser(user))
-});
+  checkSession: () => dispatch(CheckUserSession())
+})
+
 export default connect(mapToStateProps, mapDispatchToProps)(App);

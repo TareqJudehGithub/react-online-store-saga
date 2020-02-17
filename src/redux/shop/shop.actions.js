@@ -1,5 +1,7 @@
 import ShopActionTypes from "./shop.types";
-import { firestore, convertCollectionsSnapshotToMap } from "../../firebase/firebase.utils";
+
+//180.
+// import { firestore, convertCollectionsSnapshotToMap } from "../../firebase/firebase.utils";
 
 
 export const fetchCollectionsStart = () => ({
@@ -15,28 +17,30 @@ export const fetchCollectionsFailure = (errorMEssage) => ({
      payload: errorMEssage
 });
 
+//180. no longer needed in saga
 // A func that returns another func that gets dispatched in it:
-export const fetchCollectionsStartAsync = () => {
+// export const fetchCollectionsStartAsync = () => {
      
-     return dispatch => {
-     //A. redux creates the collectionRef:
-          const collectionRef = firestore.collection("collections");
+//      return dispatch => {
+//      //A. redux creates the collectionRef:
+//           const collectionRef = firestore.collection("collections");
 
-     //B. then redux dispatches the action fetchCollectionsStart, which
-     //will switch the shop reducer state to true(default: ifFetching: false).
-          dispatch(fetchCollectionsStart());
+//      //B. then redux dispatches the action fetchCollectionsStart, which
+//      //will switch the shop reducer state to true(default: ifFetching: false).
+//           dispatch(fetchCollectionsStart());
 
-     //C. then redux begings this async request:
-     //to get the data from collections:
-          collectionRef
-          .get()
-          .then(snapshot => {
-          const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
-          dispatch(fetchCollectionsSuccess(collectionsMap));
-     })
-     .catch(error=> dispatch(fetchCollectionsFailure(error.message)));
-     };
+//      //C. then redux begins this async request:
+//      //to get the data from collections:
+//           collectionRef
+//           .get()
+//           .then(snapshot => {
+//           const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
+
+//           dispatch(fetchCollectionsSuccess(collectionsMap));
+//      })
+//      .catch(error=> dispatch(fetchCollectionsFailure(error.message)));
+//      };
      
      
-}    
+// }    
 
